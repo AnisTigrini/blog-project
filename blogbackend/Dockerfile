@@ -12,4 +12,6 @@ COPY . ./
 
 RUN go build -o blogbackend .
 
+EXPOSE 8080
+
 CMD ["./blogbackend"]
