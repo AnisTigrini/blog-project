@@ -1,0 +1,42 @@
+.create-post {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.create-post form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 10px;
+  min-width: 400px;
+  width: 50%;
+}
+
+.create-post textarea {
+  height: 200px;
+  border-radius: 5px;
+}
+
+.create-post input {
+  height: 20px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.create-post button {
+  width: fit-content;
+  align-self: center;
+  padding: 10px 20px 10px 20px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 10px;
+  font-weight: 900;
+  transition: 0.3s;
+}
+
+.create-post button:hover {
+  color: white;
+  border-color: transparent;
+  background-color: black;
+}
