@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-app
+  template:
+    metadata:
+      labels:
+        app: frontend-app
+    spec:
+      containers:
+        - name: frontend
+          image: anistigrini/blogfrontend:latest
+          livenessProbe:
+            httpGet:
+              path: /create-post
+              port: 3000
+              httpHeaders:
+                - name: Custom-Header
+                  value: Test
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 10
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-app
+  template:
+    metadata:
+      labels:
+        app: backend-app
+    spec:
+      containers:
+        - name: blogbackend
+          image: anistigrini/blogbackend:latest
+          livenessProbe:
+            httpGet:
+              path: /api/posts
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
