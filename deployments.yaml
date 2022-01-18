@@ -31,7 +31,7 @@ kind: Deployment
 metadata:
   name: blog-backend-deployment
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: backend-app
@@ -42,10 +42,18 @@ spec:
     spec:
       containers:
         - name: blogbackend
-          image: anistigrini/blogbackend:latest
+          image: anistigrini/blogbackend:5
           livenessProbe:
             httpGet:
               path: /api/posts
               port: 8080
-            initialDelaySeconds: 5
-            periodSeconds: 5
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          volumeMounts:
+            - name: pvc
+              mountPath: blogbackend/data
+              subPath: data
+      volumes:
+        - name: pvc
+          persistentVolumeClaim:
+            claimName: pvc

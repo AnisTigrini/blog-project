@@ -33,10 +33,22 @@ func GetAllPosts() ([]Post, string, error) {
 	}
 
 	fileName := pwd + "/data/posts.json"
+	_, err = os.Stat(fileName)
+	if err != nil {
+		initialJsonText := "[]"
+
+		e := ioutil.WriteFile(fileName, []byte(initialJsonText), 0644)
+		if e != nil {
+			return nil, fileName, e
+		}
+		
+	}
+
 	postFile, err := ioutil.ReadFile(fileName)
 	if err != nil {
 		return nil, fileName, err
 	}
+
 	postList := []Post{}
 	err = json.Unmarshal(postFile, &postList)
 	if err != nil {

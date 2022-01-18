@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -23,9 +24,14 @@ func main() {
 	dataroutes.GET("/posts", getPostsHandler)
 	dataroutes.POST("/posts", submitPostHandler)
 	dataroutes.POST("/edit-post", editPostHandler)
+	dataroutes.GET("/stop", stopHandler)
 
 
 	router.Run(":8080")
+}
+
+func stopHandler(c *gin.Context) {
+	os.Exit(1)
 }
 
 func getPostsHandler(c *gin.Context) {
