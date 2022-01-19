@@ -14,24 +14,24 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: anistigrini/blogfrontend:latest
+          image: anistigrini/blogfrontend:7
           livenessProbe:
             httpGet:
-              path: /create-post
+              path: /
               port: 3000
               httpHeaders:
                 - name: Custom-Header
                   value: Test
-            initialDelaySeconds: 5
-            periodSeconds: 5
-            timeoutSeconds: 10
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 15
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: blog-backend-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: backend-app

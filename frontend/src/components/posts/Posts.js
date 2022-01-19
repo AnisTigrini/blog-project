@@ -6,7 +6,12 @@ const Posts = () => {
   const [posts, setPosts] = useState();
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/posts")
+    fetch("/api/posts", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((data) => setPosts(data));
   }, []);
