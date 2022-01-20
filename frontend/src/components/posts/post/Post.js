@@ -79,7 +79,7 @@ const Post = (props) => {
 
   if (!isEditMode) {
     return (
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ maxWidth: 345, margin: "5px" }}>
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -94,11 +94,7 @@ const Post = (props) => {
           title={props.author}
           subheader={props.date}
         />
-        <CardMedia
-          component="img"
-          height="194"
-          image="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8a2F0fGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-        />
+
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             {props.postDescription}
