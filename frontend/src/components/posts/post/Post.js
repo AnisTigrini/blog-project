@@ -1,6 +1,19 @@
 import { useState } from "react";
 import PostError from "../../create-post/post-error/PostError";
 import styles from "./Post.module.css";
+import { styled } from "@mui/material/styles";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Avatar from "@mui/material/Avatar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import { red } from "@mui/material/colors";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ShareIcon from "@mui/icons-material/Share";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const Post = (props) => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -66,17 +79,40 @@ const Post = (props) => {
 
   if (!isEditMode) {
     return (
-      <div className={styles.post}>
-        <div className={styles["post-info"]}>
-          <h3>{props.author}</h3>
-          <h5>{props.date}</h5>
-        </div>
-        <hr />
-        <p>{props.postDescription}</p>
-        <button type="button" onClick={editHandler}>
-          Edit
-        </button>
-      </div>
+      <Card sx={{ maxWidth: 345 }}>
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+              {props.author.charAt(0)}
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title={props.author}
+          subheader={props.date}
+        />
+        <CardMedia
+          component="img"
+          height="194"
+          image="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8a2F0fGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+        />
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            {props.postDescription}
+          </Typography>
+        </CardContent>
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+        </CardActions>
+      </Card>
     );
   } else {
     return (

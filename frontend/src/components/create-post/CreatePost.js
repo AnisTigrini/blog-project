@@ -1,7 +1,11 @@
 import { useState } from "react";
-import styles from "./CreatePost.module.css";
 import PostError from "./post-error/PostError";
 import { useNavigate } from "react-router-dom";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
+import { TextareaAutosize } from "@mui/base";
 
 const CreatePost = () => {
   let navigate = useNavigate();
@@ -50,18 +54,48 @@ const CreatePost = () => {
   };
 
   return (
-    <div className={styles["create-post"]}>
-      <form onSubmit={submitPostHandler}>
-        {postError ? <PostError>{errorMessage}</PostError> : null}
-        <label>Author</label>
-        <input type="text" onChange={authorNameHandler} value={authorName} />
-
-        <label>What's happening?</label>
-        <textarea onChange={postDescriptionHandler} value={postDescription} />
-
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+    <Box
+      component="form"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        padding: "10px",
+        margin: "5px",
+        rowGap: "10px",
+        width: "50%",
+        justifySelf: "center",
+        alignSelf: "center",
+      }}
+      noValidate
+      autoComplete="off"
+      onSubmit={submitPostHandler}
+    >
+      {postError ? <PostError>{errorMessage}</PostError> : null}
+      <TextField
+        id="outlined-basic"
+        label="author"
+        variant="outlined"
+        onChange={authorNameHandler}
+        value={authorName}
+        fullWidth
+      />
+      <TextareaAutosize
+        maxRows={4}
+        aria-label="maximum height"
+        placeholder="What are you thinking?"
+        style={{ background: "transparent", height: "200px", padding: "5px" }}
+        onChange={postDescriptionHandler}
+        value={postDescription}
+      />
+      <Button
+        sx={{ width: "fit-content", alignSelf: "center" }}
+        variant="contained"
+        type="submit"
+        endIcon={<SendIcon />}
+      >
+        Submit
+      </Button>
+    </Box>
   );
 };
 
