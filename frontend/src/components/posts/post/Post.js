@@ -41,7 +41,7 @@ const Post = (props) => {
       setPostError(false);
       setIsEditMode(false);
 
-      fetch("http://localhost:8080/api/edit-post", {
+      fetch(`${process.env.REACT_APP_TARGET_HOST}/api/edit-post`, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",

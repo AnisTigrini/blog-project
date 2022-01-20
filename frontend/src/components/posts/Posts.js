@@ -6,7 +6,7 @@ const Posts = () => {
   const [posts, setPosts] = useState();
 
   useEffect(() => {
-    fetch("/api/posts", {
+    fetch(`${process.env.REACT_APP_TARGET_HOST}/api/posts`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -18,7 +18,7 @@ const Posts = () => {
 
   return (
     <div className={styles.posts}>
-      <h1>Posts</h1>
+      <h1>{process.env.REACT_APP_WELCOME_MESSAGE}</h1>
       {posts
         ? posts.map((post) => {
             return (

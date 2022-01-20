@@ -25,7 +25,7 @@ const CreatePost = () => {
       setPostError(true);
       setErrorMessage("One or multiple fields empty!");
     } else {
-      fetch("/api/posts", {
+      fetch(`${process.env.REACT_APP_TARGET_HOST}/api/posts`, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
