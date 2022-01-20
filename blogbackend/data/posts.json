@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "PostId": "23wrc9sXVQG2QSCCATPJeuyUHwC",
+    "PostDate": "20 Jan 22 00:21 EST",
+    "authorName": "Anis",
+    "postDescription": "Hello!"
+  },
+  {
+    "PostId": "23wuE2FVNzwgV3FuwiVBTWPiGUm",
+    "PostDate": "20 Jan 22 00:42 EST",
+    "authorName": "Galileo",
+    "postDescription": "Earth is flat"
+  }
+]
