@@ -1,0 +1,31 @@
+### MAKE SURE TO START THIS FILE AFTER STARTING THE MASTER ONE.
+### THERE ARE STILL HEAVY PROCESSES RUNNING WHEN STARTING THE FRONTEND APP.
+### THE LEVEL OF CPU REQUIRED TO START THE FRONTEND POD WILL BE SUPER HIGH
+### SO THE AUTOSCALER WILL KEEP SCALING PODS FOR NO REASON
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscalerList
+items:
+  - apiVersion: autoscaling/v1
+    kind: HorizontalPodAutoscaler
+    metadata:
+      name: backend-hpa
+    spec:
+      scaleTargetRef:
+        apiVersion: apps/v1
+        kind: Deployment
+        name: blog-backend-deployment
+      minReplicas: 1
+      maxReplicas: 10
+      targetCPUUtilizationPercentage: 70
+  - apiVersion: autoscaling/v1
+    kind: HorizontalPodAutoscaler
+    metadata:
+      name: frontend-hpa
+    spec:
+      scaleTargetRef:
+        apiVersion: apps/v1
+        kind: Deployment
+        name: blog-frontend-deployment
+      minReplicas: 1
+      maxReplicas: 10
+      targetCPUUtilizationPercentage: 70
